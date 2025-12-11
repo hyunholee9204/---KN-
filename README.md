@@ -126,37 +126,6 @@
 
 </div>
 
-# 🖼 주요 화면 캡처 (Screenshots)
-
-> ⚠ 이미지는 예시 경로입니다. GitHub에 이미지 업로드 후 경로만 바꿔주세요.  
-> 예: `![메인페이지](https://github.com/hyunholee9204/---KN-/assets/12345/main.png)`
-
-### 🌐 메인 페이지  
-![Main](이미지경로)
-
-### 💰 자산 현황  
-![Asset](이미지경로)
-
-### 🏦 대출 관리  
-![Loans](이미지경로)
-
-### 📉 이자율 계산기  
-![LoanCalc](이미지경로)
-
-### 🎯 목표 트래킹  
-![Goal](이미지경로)
-
-### 📚 교육 콘텐츠  
-![Education](이미지경로)
-
-### 💱 금융 정보 (환율 그래프)  
-![Finance](이미지경로)
-
-### 📢 공지사항  
-![Notice](이미지경로)
-
----
-
 # 📅 개발 정보 (Development Info)
 
 - **개발 기간:** 2025.03 ~ 2025.11  
@@ -178,4 +147,7 @@ gradlew.bat bootRun
 
 # 3. Run Project (Mac/Linux)
 ./gradlew bootRun
+
+접속 URL: localhost:8080/main
+
 
