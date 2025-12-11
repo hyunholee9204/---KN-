@@ -1,0 +1,261 @@
+/* ---------------- 기본 레이아웃 ---------------- */
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #DFF3F2;
+  margin: 0;
+  padding: 0;
+}
+
+/* 상단 바 */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(90deg, #2C3E50, #4CA1AF);
+  padding: 12px 30px;
+  color: white;
+}
+
+.header-left {
+  font-size: 24px;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.nav-menu a {
+  color: white;
+  text-decoration: none;
+  margin: 0 12px;
+  font-weight: 500;
+}
+
+/* 전체 구조 */
+.container {
+  display: flex;
+  padding: 30px;
+}
+
+/* 사이드바 */
+.sidebar {
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.sidebar button {
+  background: linear-gradient(180deg, #2E3A59, #1A2238);
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.sidebar button:hover,
+.sidebar button.active {
+  background-color: #1565C0;
+}
+
+/* 콘텐츠 */
+.content {
+  flex: 1;
+  background-color: white;
+  padding: 30px 40px;
+  margin-left: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+/* 안내 박스 */
+.info-box {
+    background: #F7F7F7;
+    border-left: 6px solid #0D47A1;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 30px;
+}
+
+.info-box h3 {
+    margin-bottom: 10px;
+    color: black;
+}
+
+.info-box ul {
+    list-style: disc;
+    padding-left: 20px;
+    color: #333;
+}
+
+.info-box li {
+    margin-bottom: 8px;
+}
+
+/* 대출 요약 정보 카드 */
+.summary-box {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.summary-box p {
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    text-align: center;
+    font-size: 16px;
+    flex: 1;
+    min-width: 180px;
+    max-width: 220px;
+}
+
+.summary-box strong {
+    display: block;
+    font-size: 15px;
+    margin-bottom: 8px;
+    color: #0D47A1;
+}
+
+/* 대출 현황 */
+.content h2 {
+    font-size: 26px;
+    margin: 20px 0 15px;
+    color: #333;
+}
+
+/* 차트 섹션 */
+.chart-section {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    margin-top: 20px;
+    align-items: flex-start;
+}
+
+/* 테이블 */
+.loan-list {
+    flex: 2;
+    min-width: 400px;
+    margin: 0 auto;       /* 좌우 여백 자동 → 가운데 정렬 */
+    float: none;
+}
+
+.loan-list table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.loan-list th, .loan-list td {
+    padding: 14px 18px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+    font-size: 15px;
+}
+
+.loan-list th {
+    background-color: #0D47A1;
+    color: #fff;
+    font-weight: bold;
+}
+
+.loan-list tr:hover {
+    background-color: #f9f9f9;
+}
+
+/* 차트 */
+.chart-container {
+    flex: 1;
+    min-width: 280px;
+    max-width: 350px;
+}
+
+canvas {
+    width: 400px !important;
+    height: 200px !important;
+    margin: 20px auto;
+    display: block;
+}
+
+.charts {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin-top: 20px;
+}
+
+.charts canvas {
+  width: 350px !important;
+  height: 250px !important;
+}
+
+.loan-summary {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+.card {
+    background: #F7F7F7;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    text-align: center;
+    width: 200px;
+}
+
+.card h3 {
+    margin-bottom: 10px;
+    color: #0D47A1;
+}
+
+.card p {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.header-left {
+  font-size: 24px;          /* 글자 크기 통일 (필요에 따라 26px, 28px로 고정해도 됨) */
+  font-weight: bold;        /* 두께 동일 */
+  color: #ffffff;           /* 흰색 */
+  cursor: pointer;          /* 마우스 올리면 클릭 가능 표시 */
+  letter-spacing: 1px;      /* 글자 간격 (원하는 만큼 조절) */
+  font-family: 'Segoe UI', Arial, sans-serif; /* 글꼴도 강제 */
+}
+
+/* 수정 / 삭제 버튼 스타일 */
+.loan-actions a {
+    display: inline-block;
+    padding: 6px 12px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 14px;
+    transition: all 0.2s ease-in-out;
+}
+
+.edit-btn {
+    background-color: #1976D2;
+    color: white;
+}
+
+.edit-btn:hover {
+    background-color: #125CA1;
+}
+
+.delete-btn {
+    background-color: #E53935;
+    color: white;
+    margin-left: 8px;
+}
+
+.delete-btn:hover {
+    background-color: #C62828;
+}
+
+

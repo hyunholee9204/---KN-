@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>월별 자산 변동 내역</title>
+    <link rel="stylesheet" href="/css/a/a-status.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        .chart-container {
+            max-width: 800px;
+            margin: 20px auto;
+            background: #fff;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+
+        #toggleChartBtn {
+            display: inline-block;
+            background-color: #0D47A1;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 10px 18px;
+            margin-top: 15px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.2s ease-in-out;
+        }
+
+        #toggleChartBtn:hover {
+            background-color: #1565C0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 25px;
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        th, td {
+            text-align: center;
+            padding: 14px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f3f4f6;
+            font-weight: bold;
+        }
+
+        h2 {
+            margin-bottom: 10px;
+        }
+
+        .asset-box {
+            padding: 30px;
+        }
+    </style>
+</head>
+<body>
+
+<!-- ✅ 상단 헤더 -->
+<div class="header">
+    <div class="header-left" onclick="goToMain()">KN금융</div>
+    <div class="nav-wrapper">
+        <div class="nav-menu">
+            <a href="/asset">자산 관리</a>
+            <a href="/loans">대출 관리</a>
+            <a href="/target">목표 달성 트래킹</a>
+            <a href="/education/guide">교육 및 정보</a>
+            <a href="/notice">공지사항</a>
+            <a href="/inquiry">고객센터</a>
+        </div>
+    </div>
+</div>
+
+<!-- ✅ 메인 컨테이너 -->
+<div class="container">
+    <div class="sidebar">
+        <button onclick="location.href='/asset/status'">자산 현황</button>
+        <button onclick="location.href='/asset/transaction/all'">자산 내역 조회</button>
+        <button class="active">월별 변동 내역</button>
+        <button onclick="location.href='/asset/goal'">목표 달성용 자산 등록</button>
+    </div>
+
+    <div class="content">
+        <div class="asset-box">
+            <h2 th:text="${userName} + '님의 월별 자산 변동 내역'"></h2>
+            <p>📊 아래 그래프는 월별 자산 총액 변동을 시각화한 그래프입니다.</p>
+
+            <div style="width: 80%; max-width: 900px; margin: 0 auto;">
+                <canvas id="monthlyChart" width="900" height="400"></canvas>
+            </div>
+
+            <div style="text-align: center; margin-top: 20px;">
+                <button id="toggleChartBtn" class="btn btn-primary">그래프 전환 (막대)</button>
+            </div>
+
+
+            <h3 style="margin-top: 40px;">📅 월별 자산</h3>
+            <table>
+                <thead>
+                <tr>
+                    <th>기록 월</th>
+                    <th>총 자산 금액</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="item : ${monthlyHistory}">
+                    <td th:text="${#temporals.format(item.recordMonth, 'yyyy년 MM월')}"></td>
+                    <td th:text="${#numbers.formatInteger(item.totalAmount, 3, 'COMMA')} + '원'"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script th:inline="javascript">
+    const labels = /*[[${months}]]*/ [];
+    const data = /*[[${totals}]]*/ [];
+
+    let currentType = 'line';
+    const canvas = document.getElementById('monthlyChart');
+    const ctx = canvas.getContext('2d');
+
+    // ✅ 공통 스타일
+    const datasetConfig = {
+    label: '월별 자산 총액 (원)',
+    data: data,
+    borderColor: '#7B1FA2',
+    backgroundColor: 'rgba(233, 30, 99, 0.2)',
+    fill: true,
+    tension: 0.4,
+    borderWidth: 3,
+    pointRadius: 5,
+    pointBackgroundColor: '#9C27B0'
+    };
+
+    const chartOptions = {
+    responsive: false,
+    maintainAspectRatio: false,
+    plugins: {
+        legend: { display: true, position: 'top' },
+        tooltip: {
+            callbacks: {
+                label: function(context) {
+                    return context.parsed.y.toLocaleString() + '원';
+                }
+            }
+        }
+    },
+    scales: {
+        y: {
+            beginAtZero: true,
+            ticks: {
+                stepSize: 1500000, // ✅ 눈금 간격
+                callback: value => value.toLocaleString() + '원'
+            },
+            title: {
+                display: true,
+                text: '자산 금액 (원)',
+                font: { size: 14, weight: 'bold' }
+            }
+        },
+        x: {
+            title: {
+                display: true,
+                text: '월별',
+                font: { size: 14, weight: 'bold' }
+            }
+        }
+    }
+};
+
+
+    // ✅ 초기 그래프
+    let chart = new Chart(ctx, {
+        type: currentType,
+        data: {
+            labels: labels,
+            datasets: [datasetConfig]
+        },
+        options: chartOptions
+    });
+
+    // ✅ 전환 버튼 이벤트
+    document.getElementById('toggleChartBtn').addEventListener('click', () => {
+        const canvas = document.getElementById('monthlyChart');
+        currentType = currentType === 'line' ? 'bar' : 'line';
+
+        // ✅ 그래프 리셋 시 캔버스 크기도 함께 초기화
+        chart.destroy();
+        canvas.width = 900;   // 고정 크기 재설정
+        canvas.height = 400;
+
+        chart = new Chart(ctx, {
+            type: currentType,
+            data: {
+                labels: labels,
+                datasets: [datasetConfig]
+            },
+            options: chartOptions
+        });
+
+        document.getElementById('toggleChartBtn').textContent =
+            currentType === 'line' ? '그래프 전환 (막대)' : '그래프 전환 (선)';
+    });
+</script>
+
+<script>
+    function goToMain() {
+        window.location.href = "/main";
+    }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>자산 등록</title>
+    <link rel="stylesheet" href="/css/a/a-register.css">
+</head>
+<body>
+
+<!-- 상단 바 -->
+<div class="header">
+    <div class="header-left" onclick="goToMain()">
+        KN금융</div>
+    <div class="nav-wrapper">
+        <div class="nav-menu">
+            <a href="/asset">자산 관리</a>
+            <a href="/loans">대출 관리</a>
+            <a href="/target">목표 달성 트래킹</a>
+            <a href="/education/guide">교육 및 정보</a>
+            <a href="/notice">공지사항</a>
+            <a href="/inquiry">고객센터</a>
+        </div>
+    </div>
+</div>
+
+<!-- 메인 컨텐츠 -->
+<div class="container">
+    <div class="sidebar">
+        <button onclick="location.href='/asset/status'">자산 현황</button>
+        <button onclick="location.href='/asset/transaction/all'">자산 내역 조회</button>
+        <button onclick="location.href='/asset/history'">월별 변동 내역</button>
+        <button onclick="location.href='/asset/history'">목표 달성용 자산 등록</button>
+    </div>
+
+    <div class="content">
+        <h2>자산 등록 / 수정</h2>
+
+        <form th:action="@{/asset/register}" th:object="${assetForm}" method="post" class="asset-form">
+            <div class="form-group">
+                <label for="type">자산 종류</label>
+                <select id="type" th:field="*{type}" required>
+                    <option value="" disabled selected>선택하세요</option>
+                    <option value="현금">현금</option>
+                    <option value="예금">예금</option>
+                    <option value="주식">주식</option>
+                    <option value="부동산">부동산</option>
+                    <option value="가상자산">가상자산</option>
+                    <option value="기타">기타</option>
+                </select>
+
+            </div>
+
+            <div class="form-group">
+                <label for="amount">자산 금액 (원)</label>
+                <input type="number" id="amount" th:field="*{amount}" placeholder="예: 1000000" required />
+            </div>
+
+            <div class="form-actions">
+                <button type="submit" class="submit-btn">등록하기</button>
+                <a href="/asset/status"><button type="button" class="cancel-btn">취소</button></a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    function goToMain() {
+        window.location.href = "/main";
+    }
+</script>
+
+</body>
+</html>
+

@@ -1,0 +1,119 @@
+/* 배경 */
+body {
+  margin: 0;
+  padding: 0 20px; /* ← 양쪽 여백 확보! */
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #DFF3F2;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+/* 로그인 박스 */
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.login-box {
+  width: 100%;
+  max-width: 400px;
+  background-color: white;
+  padding: 40px 30px;
+  border-radius: 12px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+  text-align: center;
+}
+
+
+/* 제목 */
+.login-box h1 {
+  margin-bottom: 30px;
+  font-size: 30px;
+  color: #000000;
+}
+
+.login-box h2 {
+  margin-bottom: 30px;
+  font-size: 24px;
+  color: #999999;
+}
+
+/* 입력 필드 */
+.input-field {
+  width: 100%;
+  padding: 12px 14px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 16px;
+  box-sizing: border-box;
+}
+
+/* 로그인 버튼 */
+.login-btn {
+  width: 100%;
+  padding: 12px;
+  background-color: #003366;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: background-color 0.3s;
+}
+
+.login-btn:hover {
+  background-color: #1565c0;
+}
+
+/* 하단 링크 */
+.login-links {
+  margin-top: 20px;
+  font-size: 14px;
+}
+
+.login-links a {
+  color: #0D47A1;
+  text-decoration: none;
+}
+
+.login-links a:hover {
+  text-decoration: underline;
+}
+
+.back-button {
+  position: absolute;
+  top: 30px;
+  left: 30px;
+  text-decoration: none;
+  background-color: white;
+  color: black;
+  padding: 8px 16px;
+  border-radius: 5px;
+  font-weight: bold;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s;
+}
+
+.back-button:hover {
+  background-color: #e0e0e0;
+}
+
+.login-info {
+  margin-top: 20px;
+  font-size: 13px;
+  color: #666666;
+  text-align: left;
+  line-height: 1.6;
+  border-top: 1px dotted #ccc;
+  padding-top: 15px;
+}
+
+

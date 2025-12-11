@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>대출 신청</title>
+    <link rel="stylesheet" href="/css/l/l-register.css">
+</head>
+<body>
+<!-- 상단 바 -->
+<div class="header">
+    <div class="header-left" onclick="goToMain()">KN금융</div>
+    <div class="nav-wrapper">
+        <div class="nav-menu">
+            <a href="/asset">자산 관리</a>
+            <a href="/loans">대출 관리</a>
+            <a href="/target">목표 달성 트래킹</a>
+            <a href="/education/guide">교육 및 정보</a>
+            <a href="/notice">공지사항</a>
+            <a href="/inquiry">고객센터</a>
+        </div>
+    </div>
+</div>
+
+<!-- 전체 컨테이너 -->
+<div class="container">
+    <!-- 사이드바 -->
+    <div class="sidebar">
+        <button onclick="location.href='/loans">대출 현황</button>
+        <button onclick="location.href='/loans/schedule'">대출 상환 일정</button>
+        <button onclick="location.href='/loans/calculate'">이자율 계산</button>
+    </div>
+
+    <!-- 흰색 박스 안의 신청 폼 -->
+    <div class="form-box">
+        <h2>대출 등록</h2>
+        <form th:action="@{/loans/register}" th:object="${loan}" method="post" class="form-grid">
+
+            <label>대출 종류</label>
+            <select th:field="*{loanType}">
+                <option th:each="type : ${loanTypes}"
+                        th:value="${type}"
+                        th:text="${type.description}">
+                </option>
+            </select>
+
+            <label>대출 기관</label>
+            <input type="text" th:field="*{lender}" />
+
+            <label>대출 금액</label>
+            <input type="number" th:field="*{principal}" />
+
+            <label>이자율(%)</label>
+            <input type="number" step="0.01" th:field="*{interestRate}" />
+
+            <label>시작일</label>
+            <input type="date" th:field="*{startDate}" />
+
+            <!-- ✅ 종료일 -->
+            <label>종료일</label>
+            <input type="date" th:field="*{endDate}" />
+
+
+            <label>상환 횟수</label>
+            <input type="number" th:field="*{totalInstallments}" />
+
+            <label>대출 목적</label>
+            <input type="text" th:field="*{purpose}" />
+
+            <div class="submit-btn">
+                <button type="submit" class="submit-button">등록</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    function goToMain() {
+        window.location.href = "/main";
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,113 @@
+/* 공통 배경 및 정렬 스타일 */
+body {
+  margin: 0;
+  padding: 0 20px;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #DFF3F2;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* 로그인과 동일한 컨테이너 비율 유지 */
+.signup-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+/* 박스 스타일 */
+.signup-box {
+  width: 100%;
+  max-width: 400px;
+  background-color: white;
+  padding: 40px 30px;
+  border-radius: 12px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+  text-align: center;
+}
+
+/* 홈페이지로 돌아가기 버튼 - 박스 안에 위치 */
+.back-button {
+  position: absolute;
+  top: 30px;
+  left: 30px;
+  text-decoration: none;
+  background-color: white;
+  color: black;
+  padding: 8px 16px;
+  border-radius: 5px;
+  font-weight: bold;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s;
+}
+
+.back-button:hover {
+  background-color: #e0e0e0;
+}
+
+
+.signup-box h1 {
+  margin-bottom: 30px;
+  font-size: 30px;
+  color: #000000;
+}
+
+.signup-box h2 {
+  margin-bottom: 30px;
+  font-size: 22px;
+  color: #003366;
+}
+
+.signup-box form input {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 14px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+
+.signup-box form button {
+  width: 100%;
+  padding: 12px;
+  background-color: #003366;
+  color: white;
+  font-size: 16px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+
+.signup-box form button:hover {
+  background-color: #0050a1;
+}
+
+.bottom-links {
+  margin-top: 18px;
+  font-size: 13px;
+}
+
+.bottom-links a {
+  color: #003366;
+  text-decoration: none;
+}
+
+.bottom-links a:hover {
+  text-decoration: underline;
+}
+
+.info-text {
+  margin-top: 20px;
+  font-size: 13px;
+  color: #666666;
+  text-align: left;
+  line-height: 1.6;
+  border-top: 1px dotted #ccc;
+  padding-top: 15px;
+}
+

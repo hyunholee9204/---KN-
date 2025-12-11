@@ -1,0 +1,101 @@
+body {
+  font-family: 'Pretendard', 'Noto Sans KR', sans-serif;
+  background-color: #F9FAFB;
+  margin: 0;
+  color: #333;
+  line-height: 1.7;
+}
+
+/* 헤더 */
+.header {
+  background: linear-gradient(90deg, #2C3E50, #4CA1AF);
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 40px;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+}
+
+.logo-icon {
+  width: 36px;
+  height: 36px;
+}
+
+.logo-text {
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.header-right a {
+  color: white;
+  text-decoration: none;
+  margin-left: 20px;
+  font-weight: 500;
+  transition: 0.2s;
+}
+
+.header-right a:hover {
+  opacity: 0.8;
+}
+
+/* 본문 */
+.terms-container {
+  max-width: 900px;
+  margin: 60px auto;
+  background: #fff;
+  padding: 40px 60px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+.terms-container h1 {
+  color: #0D47A1;
+  font-size: 30px;
+  margin-bottom: 10px;
+}
+
+.update-date {
+  color: #666;
+  font-size: 14px;
+  margin-bottom: 30px;
+}
+
+section {
+  margin-bottom: 35px;
+}
+
+section h2 {
+  color: #1565C0;
+  font-size: 20px;
+  border-left: 5px solid #4CA1AF;
+  padding-left: 10px;
+  margin-bottom: 10px;
+}
+
+section ul {
+  padding-left: 20px;
+}
+
+.footer-text {
+  text-align: center;
+  color: #555;
+  font-weight: 500;
+  margin-top: 40px;
+}
+
+/* 푸터 */
+.footer {
+  background: #2C3E50;
+  color: white;
+  text-align: center;
+  padding: 20px 0;
+  font-size: 14px;
+  margin-top: 50px;
+}

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>목표 등록</title>
+    <link rel="stylesheet" href="/css/g/T-register.css">
+</head>
+<body>
+<!-- 상단 바 -->
+<div class="header">
+    <div class="header-left" onclick="goToMain()">KN금융</div>
+    <div class="nav-wrapper">
+        <div class="nav-menu">
+            <a href="/asset">자산 관리</a>
+            <a href="/loans">대출 관리</a>
+            <a href="/target">목표 달성 트래킹</a>
+            <a href="/education/guide">교육 및 정보</a>
+            <a href="/notice">공지사항</a>
+            <a href="/inquiry">고객센터</a>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <!-- 사이드바 -->
+    <div class="sidebar">
+        <button onclick="location.href='/target'">목표 현황</button>
+        <button onclick="location.href='/target/progress'">진행 상황</button>
+    </div>
+
+    <!-- 메인 콘텐츠 -->
+    <div class="content">
+        <h2>목표 등록</h2>
+
+        <!-- ✅ th:object 추가됨 -->
+        <form th:action="@{/target/register}" th:object="${target}" method="post">
+
+            <div class="form-group">
+                <label for="title">목표 이름</label>
+                <input type="text" id="title" th:field="*{title}" placeholder="예: 여행 자금 모으기" required>
+            </div>
+
+            <div class="form-group">
+                <label for="description">세부 내용</label>
+                <textarea id="description" th:field="*{description}" rows="3"
+                          placeholder="목표에 대한 설명을 입력하세요"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="goalAmount">목표 금액</label>
+                <!-- ✅ 바인딩 수정됨 -->
+                <input type="number" id="goalAmount" th:field="*{goalAmount}" placeholder="예: 1000000" required>
+            </div>
+
+            <div class="form-group">
+                <label for="startDate">시작일</label>
+                <input type="date" id="startDate" th:field="*{startDate}" required>
+            </div>
+
+            <div class="form-group">
+                <label for="endDate">마감일</label>
+                <input type="date" id="endDate" th:field="*{endDate}" required>
+            </div>
+
+            <div class="actions">
+                <button type="submit" class="submit-btn">등록하기</button>
+                <a href="/target"><button type="button" class="cancel-btn">취소</button></a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    function goToMain() {
+        window.location.href = "/main";
+    }
+</script>
+</body>
+</html>

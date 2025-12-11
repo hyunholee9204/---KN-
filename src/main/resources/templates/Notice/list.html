@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>공지사항</title>
+    <link rel="stylesheet" href="/css/notice.css">
+</head>
+<body>
+<div class="header">
+    <div class="header-left" onclick="goToMain()">KN금융</div>
+    <div class="nav-wrapper">
+        <div class="nav-menu">
+            <a href="/asset">자산 관리</a>
+            <a href="/loans">대출 관리</a>
+            <a href="/target">목표 달성 트래킹</a>
+            <a href="/education/guide">교육 및 정보</a>
+            <a href="/notice">공지사항</a>
+            <a href="/inquiry">고객센터</a>
+        </div>
+    </div>
+</div>
+
+<!-- 평지사항 목록 -->
+<div class="container">
+    <div class="sidebar">
+        <button onclick="location.href='/notice'">공지사항</button>
+        <button onclick="location.href='/notice/updates'">업데이트 내역</button>
+    </div>
+    <div class="content">
+        <h2>공지사항</h2>
+        <table>
+            <thead>
+            <tr>
+                <th>번호</th>
+                <th>제목</th>
+                <th>글쓴이</th>
+                <th>등록일</th>
+                <th>조회수</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:if="${noticeEntityPage.content.size() == 0}">
+                <td colspan="5">등록된 공지사항이 없습니다.</td>
+            </tr>
+            <tr th:each="notice : ${noticeEntityPage.content}">
+                <td th:text="${notice.id}"></td>
+                <td>
+                    <a th:href="@{'/notice/' + ${notice.id}}"
+                       th:text="${notice.title}">제목</a>
+                </td>
+                <td th:text="${notice.author}">작성자</td>
+                <td>
+                    <span th:if="${notice.createdAt}"
+                          th:text="${#temporals.format(notice.createdAt, 'yyyy-MM-dd')}"></span>
+                    <span th:unless="${notice.createdAt}">날짜 없음</span>
+                </td>
+                <td th:text="${notice.views}">0</td>
+            </tr>
+            </tbody>
+        </table>
+
+        <!-- 페이지네이션 -->
+        <div class="pagination" th:if="${noticeEntityPage.totalPages > 0}">
+            <a th:if="${noticeEntityPage.hasPrevious()}" th:href="@{/notice(page=0)}">&laquo;</a>
+
+            <a th:each="i : ${#numbers.sequence(0, noticeEntityPage.totalPages - 1)}"
+               th:href="@{/notice(page=${i})}"
+               th:text="${i + 1}"
+               th:classappend="${i == noticeEntityPage.number} ? 'active' : ''"></a>
+
+            <a th:if="${noticeEntityPage.hasNext()}"
+               th:href="@{/notice(page=${noticeEntityPage.totalPages - 1})}">&raquo;</a>
+        </div>
+    </div>
+</div>
+
+<script>
+    function goToMain() {
+        window.location.href = "/main";
+    }
+</script>
+</body>
+</html>

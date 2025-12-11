@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>고객센터</title>
+    <link rel="stylesheet" href="/css/in-register.css">
+</head>
+<body>
+<!-- 상단 바 -->
+<div class="header">
+    <div class="header-left" onclick="goToMain()">KN금융</div>
+    <div class="nav-wrapper">
+        <div class="nav-menu">
+            <a href="/asset">자산 관리</a>
+            <a href="/loans">대출 관리</a>
+            <a href="/target">목표 달성 트래킹</a>
+            <a href="/education/guide">교육 및 정보</a>
+            <a href="/notice">공지사항</a>
+            <a href="/inquiry">고객센터</a>
+        </div>
+    </div>
+</div>
+<!-- 페이지 본문 -->
+<div class="container">
+    <div class="sidebar">
+        <button onclick="location.href='/inquiry/faq'">FAQ</button>
+        <button onclick="location.href='/inquiry/form'">문의하기</button>
+        <button onclick="location.href='/inquiry/my'">내 문의내역</button>
+        <button onclick="location.href='/inquiry/guide'">이용 가이드</button>
+    </div>
+    <div class="content">
+        <h2>문의하기</h2>
+        <form th:action="@{/inquiry/form}" method="post" enctype="multipart/form-data" th:object="${inquiryForm}" class="inquiry-form">
+
+            <label>문의 유형</label><br>
+            <select th:field="*{category}" required>
+                <option value="">-- 선택하세요 --</option>
+                <option value="자산">자산</option>
+                <option value="대출">대출</option>
+                <option value="목표 트래킹">목표 트래킹</option>
+                <option value="정보/교육">정보/교육</option>
+                <option value="시스템">시스템</option>
+                <option value="기타">기타</option>
+            </select><br><br>
+
+            <label>제목</label><br>
+            <input type="text" th:field="*{title}" placeholder="문의 제목을 입력하세요" required><br><br>
+
+            <label>문의 내용</label><br>
+            <textarea th:field="*{content}" placeholder="문의 내용을 상세히 입력해 주세요" rows="6" required></textarea><br><br>
+
+            <label>연락처 (선택)</label><br>
+            <input type="text" th:field="*{contact}" placeholder="이메일 또는 전화번호"><br><br>
+
+            <label>파일 첨부 (선택)</label><br>
+            <input type="file" th:field="*{file}"><br><br>
+
+            <label>
+                <input type="checkbox" th:field="*{isPrivate}"> 비공개 문의로 등록
+            </label><br><br>
+
+            <button type="submit" class="submit-btn">문의 등록</button>
+        </form>
+    </div>
+</div>
+<script>
+    function goToMain() {
+        window.location.href = "/main";
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,112 @@
+/* ---------------- 기본 레이아웃 ---------------- */
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #DFF3F2;
+  margin: 0;
+  padding: 0;
+}
+
+/* 상단 바 */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(90deg, #2C3E50, #4CA1AF);
+  padding: 12px 30px;
+  color: white;
+}
+
+.header-left {
+  font-size: 24px;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.nav-menu a {
+  color: white;
+  text-decoration: none;
+  margin: 0 12px;
+  font-weight: 500;
+}
+
+/* 전체 구조 */
+.container {
+  display: flex;
+  padding: 30px;
+}
+
+/* 사이드바 */
+.sidebar {
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.sidebar button {
+  background: linear-gradient(180deg, #2E3A59, #1A2238);
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.sidebar button:hover,
+.sidebar button.active {
+  background-color: #1565C0;
+}
+.content {
+    flex: 1;
+    background: white;
+    padding: 30px 40px;
+    margin-left: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.content h2 {
+    margin-bottom: 20px;
+    color: black;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+}
+
+input, textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 14px;
+}
+
+.actions {
+    margin-top: 20px;
+    display: flex;
+    gap: 10px;
+}
+
+.submit-btn {
+    background: #1976d2;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.cancel-btn {
+    background: #e53935;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+}

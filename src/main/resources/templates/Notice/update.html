@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>업데이트 내역</title>
+    <link rel="stylesheet" href="/css/update.css">
+</head>
+<body>
+<div class="header">
+    <div class="header-left" onclick="goToMain()">KN금융</div>
+    <div class="nav-wrapper">
+        <div class="nav-menu">
+            <a href="/asset">자산 관리</a>
+            <a href="/loans">대출 관리</a>
+            <a href="/target">목표 달성 트래킹</a>
+            <a href="/education/guide">교육 및 정보</a>
+            <a href="/notice">공지사항</a>
+            <a href="/inquiry">고객센터</a>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="sidebar">
+        <button onclick="location.href='/notice'">공지사항</button>
+        <button onclick="location.href='/notice/updates'">업데이트 내역</button>
+    </div>
+
+    <div class="content">
+        <h2>업데이트 내역</h2>
+
+        <div class="update-card" th:each="n : ${page.content}">
+            <div class="update-header">
+                <div class="tags">
+                    <span class="badge status" th:text="${n.status}">RELEASED</span>
+                    <span class="badge version" th:text="'v' + ${n.version}">v1.0.0</span>
+                </div>
+                <div class="release-date" th:text="${n.releaseDate}">2025-08-13</div>
+            </div>
+            <h3 class="update-title" th:text="${n.title}">업데이트 제목</h3>
+            <p class="update-summary" th:text="${n.summary}">간단한 요약 설명...</p>
+            <a class="detail-link" th:href="@{'/notice/updates/' + ${n.id}}">자세히 보기 →</a>
+        </div>
+
+        <div class="pagination" th:if="${page.totalPages>1}">
+            <a th:if="${!page.first}" th:href="@{|?page=${page.number-1}|}">이전</a>
+            <span th:text="${page.number+1} + ' / ' + ${page.totalPages}"></span>
+            <a th:if="${!page.last}" th:href="@{|?page=${page.number+1}|}">다음</a>
+        </div>
+    </div>
+</div>
+<script>
+    function goToMain() {
+        window.location.href = "/main";
+    }
+</script>
+</body>
+</html>

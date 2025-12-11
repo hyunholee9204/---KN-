@@ -1,0 +1,164 @@
+/* ---------------- 기본 레이아웃 ---------------- */
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #DFF3F2;
+  margin: 0;
+  padding: 0;
+}
+
+/* 상단 바 */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(90deg, #2C3E50, #4CA1AF);
+  padding: 12px 30px;
+  color: white;
+}
+
+.header-left {
+  font-size: 24px;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.nav-menu a {
+  color: white;
+  text-decoration: none;
+  margin: 0 12px;
+  font-weight: 500;
+}
+
+/* 전체 구조 */
+.container {
+  display: flex;
+  padding: 30px;
+}
+
+/* 사이드바 */
+.sidebar {
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.sidebar button {
+  background: linear-gradient(180deg, #2E3A59, #1A2238);
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.sidebar button:hover,
+.sidebar button.active {
+  background-color: #1565C0;
+}
+
+/* 콘텐츠 */
+.content {
+  flex: 1;
+  background-color: white;
+  padding: 30px 40px;
+  margin-left: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.content h2 {
+    font-size: 24px;
+    margin-bottom: 30px;
+    border-bottom: 2px solid #0D47A1;
+    padding-bottom: 10px;
+    color: #222;
+}
+
+
+
+/* 탭 */
+.tabs {
+  display: flex;
+  gap: 12px;
+  margin: 8px 0 16px;
+  flex-wrap: wrap;
+}
+.tab-btn {
+  border: 1px solid #d1d5db;
+  background: #f9fafb;
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.tab-btn.active {
+  background: #e6f4f1;      /* 연한 민트 */
+  border-color: #2fb095;     /* 사이트 메인 컬러 계열 */
+  color: #148b74;
+}
+
+/* 노트 문구 */
+.guide-note {
+  color: #6b7280;
+  font-size: 14px;
+}
+
+/* 패널 */
+.tab-panel { display: none; }
+.tab-panel.active { display: block; }
+
+.guide-list {
+  margin: 12px 0 18px;
+  padding-left: 20px;
+}
+.guide-list li { margin: 6px 0; }
+
+/* 기존 guide-img → 여러 장 대응 */
+.guide-img {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 30px;                 /* 이미지 간격 넓게 */
+  padding: 20px;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+}
+
+/* 개별 이미지 */
+.guide-img img {
+  width: 100%;               /* figure 너비에 맞게 크게 */
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+  transition: transform 0.2s ease;
+}
+
+.guide-sep {
+  margin: 28px 0 16px;
+  border: none;
+  border-top: 1px solid #e5e7eb;
+}
+
+.guide-info h4 { margin: 0 0 6px; }
+.guide-info p  { margin: 0; color:#4b5563; }
+
+.guide-img figure {
+  width: 48%;                /* 한 줄에 2개 */
+  text-align: center;
+  margin: 0;                 /* figure 기본 margin 제거 */
+}
+
+/* hover 효과 */
+.guide-img img:hover {
+  transform: scale(1.02);
+}
+
+/* 이미지 아래 설명(캡션) */
+.guide-img figcaption {
+  margin-top: 10px;
+  font-size: 15px;
+  color: #555;
+  font-style: italic;
+}

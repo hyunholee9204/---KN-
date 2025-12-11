@@ -1,0 +1,129 @@
+/* ---------------- 기본 레이아웃 ---------------- */
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #DFF3F2;
+  margin: 0;
+  padding: 0;
+}
+
+/* 상단 바 */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(90deg, #2C3E50, #4CA1AF);
+  padding: 12px 30px;
+  color: white;
+}
+
+.header-left {
+  font-size: 24px;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.nav-menu a {
+  color: white;
+  text-decoration: none;
+  margin: 0 12px;
+  font-weight: 500;
+}
+
+/* 전체 구조 */
+.container {
+  display: flex;
+  padding: 30px;
+}
+
+/* 사이드바 */
+.sidebar {
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.sidebar button {
+  background: linear-gradient(180deg, #2E3A59, #1A2238);
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.sidebar button:hover,
+.sidebar button.active {
+  background-color: #1565C0;
+}
+
+/* 콘텐츠 */
+.content {
+  flex: 1;
+  background-color: white;
+  padding: 30px;
+  margin-left: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.content h2 {
+    font-size: 24px;
+    margin-bottom: 30px;
+    border-bottom: 2px solid #0D47A1;
+    padding-bottom: 10px;
+    color: #222;
+}
+
+.inquiry-form {
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: left;
+  font-size: 15px;
+}
+
+.inquiry-form input[type="text"],
+.inquiry-form select,
+.inquiry-form textarea,
+.inquiry-form input[type="file"] {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.inquiry-form .submit-btn {
+  background-color: #0D47A1;
+  color: white;
+  padding: 10px 25px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.inquiry-form .submit-btn:hover {
+  background-color: #003366;
+}
+
+.inquiry-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  font-size: 14px;
+}
+
+.inquiry-table th, .inquiry-table td {
+  border: 1px solid #ccc;
+  padding: 10px;
+  text-align: center;
+}
+
+.inquiry-table th {
+  background-color: #0D47A1;
+  color: white;
+}
+
+.inquiry-table tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}

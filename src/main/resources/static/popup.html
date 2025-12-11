@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>실시간 환율 안내</title>
+    <style>
+        body {
+          font-family: 'Noto Sans KR', sans-serif;
+          background: linear-gradient(180deg, #FFE0B2, #FFCC80);
+          margin: 0;
+          padding: 0;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          height: 100vh;
+          position: relative;
+        }
+
+        .popup-box {
+          background: white;
+          border-radius: 12px;
+          box-shadow: 0 4px 15px rgba(0,0,0,0.25);
+          width: 80%;
+          max-width: 500px;
+          padding: 35px 30px 40px;
+          text-align: center;
+        }
+
+        h2 {
+          color: #black;
+          margin-bottom: 10px;
+        }
+
+        p {
+          color: #1A237E;
+          font-size: 15px;
+          margin-bottom: 35px;
+          line-height: 1.6;
+        }
+
+        /* ✅ 중앙 버튼 */
+        .main-btn {
+          background-color: #43A047;
+          color: white;
+          border: none;
+          border-radius: 8px;
+          cursor: pointer;
+          font-weight: 600;
+          padding: 12px 30px;
+          font-size: 16px;
+          transition: 0.3s;
+        }
+
+        .main-btn:hover {
+          background-color: #388E3C;
+        }
+
+        .close-icon {
+    position: fixed;
+    top: 14px;
+    right: 14px;
+    background: #ffffff;
+    border: 1px solid #d7d7d7;
+    border-radius: 50%;
+    width: 34px;
+    height: 34px;
+    font-size: 17px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+    z-index: 9999;
+}
+
+.close-icon:hover {
+    background: #f1f1f1;
+}
+
+
+        /* ✅ 오른쪽 하단 버튼 */
+        .ignore-area {
+          position: fixed;
+          right: 20px;
+          bottom: 15px;
+          display: flex;
+          gap: 10px;
+          z-index: 1000;
+        }
+
+        .ignore-btn {
+          background-color: #E3F2FD;
+          color: #black;
+          border: 1px solid #90CAF9;
+          border-radius: 6px;
+          padding: 8px 12px;
+          cursor: pointer;
+          font-weight: 500;
+          font-size: 13px;
+          box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+          transition: 0.3s;
+        }
+
+        .ignore-btn:hover {
+          background-color: #BBDEFB;
+        }
+    </style>
+</head>
+<body>
+<!-- ✅ 왼쪽 상단 아이콘 형태 닫기 -->
+<button class="close-icon" onclick="window.close()">✕</button>
+
+<div class="popup-box">
+    <h2>🌏 실시간 환율 확인 서비스 오픈!</h2>
+    <p>
+        이제 KN금융에서 달러, 유로 등 주요 통화의<br>
+        실시간 환율을 확인할 수 있습니다.<br>
+        매일 변동하는 환율 정보를 바로 만나보세요!
+    </p>
+
+    <button class="main-btn" onclick="goToFinanceInfo()">바로 확인하기</button>
+</div>
+
+<!-- ✅ 팝업 바깥 오른쪽 하단 -->
+<div class="ignore-area">
+    <button class="ignore-btn" onclick="ignoreFor(1)">오늘 하루 보지 않기</button>
+    <button class="ignore-btn" onclick="ignoreFor(7)">일주일 동안 보지 않기</button>
+</div>
+
+<script>
+    function goToFinanceInfo() {
+      window.opener.location.href = '/finance/info';
+      window.close();
+    }
+
+    function ignoreFor(days) {
+      const hideUntil = new Date();
+      hideUntil.setDate(hideUntil.getDate() + days);
+      localStorage.setItem("popupHideUntil", hideUntil.toISOString());
+      window.close();
+    }
+</script>
+</body>
+</html>

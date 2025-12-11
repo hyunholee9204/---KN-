@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>업데이트 내역 상세 | KN금융</title>
+    <link rel="stylesheet" href="/css/notice-d.css"> <!-- 공지사항 CSS 재활용 -->
+</head>
+<body>
+
+<div class="wrapper">
+
+    <!-- 🔹 헤더 -->
+    <div class="header-container">
+        <div class="header-left" onclick="goToMain()">
+            <img src="/img/logo.png" alt="로고" class="logo-icon">
+            KN금융
+        </div>
+    </div>
+
+    <!-- 🔹 메뉴바 -->
+    <nav class="menu-bar">
+        <button onclick="location.href='/asset'">자산 관리</button>
+        <button onclick="location.href='/loans'">대출 관리</button>
+        <button onclick="location.href='/target'">목표 달성 트래킹</button>
+        <button onclick="location.href='/education/guide'">교육 및 정보</button>
+        <button onclick="location.href='/notice'">공지사항</button>
+        <button onclick="location.href='/inquiry'">고객센터</button>
+    </nav>
+
+    <!-- 🔹 업데이트 상세 콘텐츠 -->
+    <main class="notice-detail-container">
+        <div class="notice-detail-card">
+            <h2 th:text="${note.title}">업데이트 제목</h2>
+
+            <div class="notice-info">
+                <p><strong>버전:</strong> <span th:text="${note.version}">v1.0</span></p>
+                <p><strong>배포일:</strong>
+                    <span th:if="${note.releaseDate}" th:text="${#temporals.format(note.releaseDate, 'yyyy-MM-dd')}">2025-09-07</span>
+                    <span th:unless="${note.releaseDate}">날짜 없음</span>
+                </p>
+                <p><strong>상태:</strong> <span th:text="${note.status}">RELEASED</span></p>
+            </div>
+
+            <hr>
+
+            <div class="notice-content">
+                <h3>업데이트 요약</h3>
+                <p th:text="${note.summary}">초기 릴리즈 버전입니다.</p>
+
+                <h3>세부 변경 내역</h3>
+                <ul th:if="${note.changes != null and !note.changes.isEmpty()}">
+                    <li th:each="c : ${note.changes}">
+                        <strong th:text="${c.type}"></strong> -
+                        <span th:text="${c.description}"></span>
+                    </li>
+                </ul>
+                <p th:if="${note.changes == null or note.changes.isEmpty()}">변경 내역이 없습니다.</p>
+            </div>
+
+            <div class="back-btn-wrapper">
+                <a href="/notice/updates" class="back-btn">← 목록으로</a>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        © 2025 KN금융 | 고객센터: 1588-0000 | Email: help@knfinance.co.kr
+    </footer>
+</div>
+
+<script>
+    function goToMain() {
+        window.location.href = "/main";
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>금융 정보 대시보드</title>
+    <link rel="stylesheet" href="/css/e/finance.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            margin: 0;
+        }
+        .up { color: red; }
+        .down { color: blue; }
+        .neutral { color: gray; }
+
+        .finance-section { margin-top: 25px; }
+
+        ul.quick-links li {
+            list-style: none;
+            margin: 8px 0;
+        }
+        ul.quick-links li a {
+            text-decoration: none;
+            color: #0056b3;
+            font-weight: 500;
+        }
+        ul.quick-links li a:hover {
+            text-decoration: underline;
+        }
+        #news-list li {
+            margin-bottom: 5px;
+        }
+        #news-list a {
+            text-decoration: none;
+            color: #333;
+        }
+        #news-list a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+<div class="header">
+    <div class="header-left" onclick="location.href='/main'">KN금융</div>
+    <div class="nav-wrapper">
+        <div class="nav-menu">
+            <a href="/asset">자산 관리</a>
+            <a href="/loans">대출 관리</a>
+            <a href="/target">목표 달성 트래킹</a>
+            <a href="/education/guide">교육 및 정보</a>
+            <a href="/notice">공지사항</a>
+            <a href="/inquiry">고객센터</a>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="sidebar">
+        <button onclick="location.href='/education/guide'">교육</button>
+        <button onclick="location.href='/finance/info'">금융 정보</button>
+    </div>
+
+    <div class="content">
+        <h2>실시간 환율 정보 (1단위 기준)</h2>
+
+        <div class="finance-section">
+            <p>미국 달러 (USD → KRW, 1달러당 원화):
+                <span id="usd-rate">불러오는 중...</span>
+            </p>
+            <p>유로 (EUR → KRW, 1유로당 원화):
+                <span id="eur-rate">불러오는 중...</span>
+            </p>
+        </div>
+
+        <h3>최근 7일 환율 추이</h3>
+        <canvas id="exchangeChart" width="500" height="280"></canvas>
+
+        <div class="finance-section">
+            <h3>다른 금융 지표 바로가기</h3>
+            <ul class="quick-links">
+                <li><a href="https://finance.naver.com/sise/" target="_blank">📈 주식 지수 (KOSPI / KOSDAQ)</a></li>
+                <li><a href="https://www.bok.or.kr/portal/main/main.do" target="_blank">💰 한국은행 기준금리 보기</a></li>
+                <li><a href="https://www.koreagoldx.co.kr" target="_blank">🏅 금 시세 확인하기</a></li>
+            </ul>
+        </div>
+
+        <div class="finance-section">
+            <h3>최근 금융 뉴스</h3>
+            <ul id="news-list"><li>불러오는 중...</li></ul>
+        </div>
+    </div>
+</div>
+
+<script>
+    const chartData = {};
+
+    // ✅ 환율 데이터 불러오기
+    async function loadExchangeRates() {
+        const currencies = ["USD", "EUR"];
+        const today = new Date().toISOString().split("T")[0];
+        const startDate = new Date();
+        startDate.setDate(startDate.getDate() - 7);
+        const sevenDaysAgo = startDate.toISOString().split("T")[0];
+
+        for (let cur of currencies) {
+            const res = await fetch(`https://api.frankfurter.app/${sevenDaysAgo}..${today}?from=${cur}&to=KRW`);
+            const data = await res.json();
+            const dates = Object.keys(data.rates);
+            const values = dates.map(d => data.rates[d]["KRW"]);
+
+            const latest = values[values.length - 1];
+            const weekAgo = values[0];
+            const diff = latest - weekAgo;
+            const diffRate = (diff / weekAgo) * 100;
+
+            const el = document.getElementById(`${cur.toLowerCase()}-rate`);
+            let cls = "neutral", arrow = "";
+            if (diff > 0) { cls = "up"; arrow = "▲"; }
+            else if (diff < 0) { cls = "down"; arrow = "▼"; }
+
+            el.innerHTML = `
+                <strong>${latest.toLocaleString(undefined, {maximumFractionDigits: 2})}</strong> 원
+                <span class="${cls}" style="margin-left:8px;">
+                    ${arrow} ${Math.abs(diff).toFixed(2)} (${diffRate.toFixed(2)}%)
+                </span>
+            `;
+
+            chartData[cur] = { dates, values };
+        }
+    }
+
+    // ✅ 그래프 그리기
+    async function drawChart() {
+        const ctx = document.getElementById("exchangeChart").getContext("2d");
+        new Chart(ctx, {
+            type: "line",
+            data: {
+                labels: chartData["USD"].dates,
+                datasets: [
+                    {
+                        label: "USD → KRW",
+                        data: chartData["USD"].values,
+                        borderColor: "red",
+                        tension: 0.3,
+                        fill: false
+                    },
+                    {
+                        label: "EUR → KRW",
+                        data: chartData["EUR"].values,
+                        borderColor: "blue",
+                        tension: 0.3,
+                        fill: false
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: { position: "bottom" }
+                },
+                scales: {
+                    y: {
+                        ticks: { stepSize: 250 },
+                        title: { display: true, text: "₩ (KRW)" }
+                    }
+                }
+            }
+        });
+    }
+
+    // ✅ 뉴스 데이터 불러오기
+    async function loadNews() {
+        const newsList = document.getElementById("news-list");
+        newsList.innerHTML = "<li>뉴스 불러오는 중...</li>";
+
+        try {
+            const res = await fetch("/finance/news");
+            const data = await res.json();
+
+            if (!data.articles) {
+                newsList.innerHTML = "<li>뉴스 데이터 없음</li>";
+                return;
+            }
+
+            newsList.innerHTML = "";
+            data.articles.slice(0, 5).forEach(article => {
+                const li = document.createElement("li");
+                li.innerHTML = `
+                    <a href="${article.url}" target="_blank">
+                        🗞 ${article.title}
+                        <small style="color:gray;"> (${article.source.name || "출처 미상"})</small>
+                    </a>`;
+                newsList.appendChild(li);
+            });
+        } catch (err) {
+            console.error("뉴스 불러오기 실패:", err);
+            newsList.innerHTML = "<li>뉴스 불러오기 실패</li>";
+        }
+    }
+
+    // ✅ 실행 순서
+    document.addEventListener("DOMContentLoaded", async () => {
+        await loadExchangeRates();
+        await drawChart();
+        await loadNews();
+    });
+</script>
+</body>
+</html>
+

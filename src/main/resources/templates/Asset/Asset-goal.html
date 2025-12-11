@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>목표 달성용 자산 등록 | KN금융</title>
+    <link rel="stylesheet" href="/css/a/a-goal.css">
+</head>
+<body>
+
+<!-- 🔹 상단 헤더 -->
+<div class="header">
+    <div class="header-left" onclick="goToMain()">KN금융</div>
+    <div class="nav-wrapper">
+        <div class="nav-menu">
+            <a href="/asset">자산 관리</a>
+            <a href="/loans">대출 관리</a>
+            <a href="/target">목표 달성 트래킹</a>
+            <a href="/education/guide">교육 및 정보</a>
+            <a href="/notice">공지사항</a>
+            <a href="/inquiry">고객센터</a>
+        </div>
+    </div>
+</div>
+
+<!-- 🔹 메인 컨테이너 -->
+<div class="container">
+    <div class="sidebar">
+        <button onclick="location.href='/asset/status'">자산 현황</button>
+        <button onclick="location.href='/asset/transaction/all'">자산 내역 조회</button>
+        <button onclick="location.href='/asset/history'">월별 변동 내역</button>
+        <button onclick="location.href='/asset/goal'">목표 달성용 자산 등록</button>
+    </div>
+
+    <!-- 🔸 콘텐츠 -->
+    <div class="content">
+        <h2>🎯 목표 달성용 자산 등록</h2>
+        <p class="sub-text">등록한 자산은 목표 달성률 계산에 자동 반영됩니다.</p>
+
+        <form th:action="@{/asset/goal/save}" method="post" class="goal-form">
+            <!-- ✅ 추가: type, amount, targetId 이름을 서버와 정확히 매칭 -->
+
+            <!-- 자산 종류 -->
+            <div class="form-group">
+                <label for="type">자산 종류</label>
+                <select id="type" name="type" required>
+                    <option value="">선택하세요</option>
+                    <option value="현금">현금</option>
+                    <option value="예금">예금</option>
+                    <option value="부동산">부동산</option>
+                    <option value="주식">주식</option>
+                    <option value="가상자산">가상자산</option>
+                    <option value="목표전용자산">목표전용자산</option>
+                    <option value="기타">기타</option>
+                </select>
+            </div>
+
+            <!-- 자산명 -->
+            <div class="form-group">
+                <label for="name">자산명 (선택)</label>
+                <input type="text" id="name" name="name" placeholder="예: 국민은행 적금 / 삼성전자 / 강남 아파트">
+            </div>
+
+            <!-- 금액 -->
+            <div class="form-group">
+                <label for="amount">금액 (₩)</label>
+                <input type="number" id="amount" name="amount" min="0" step="1000" required placeholder="예: 500000">
+            </div>
+
+            <!-- 목표 선택 -->
+            <div class="form-group">
+                <label for="targetId">연동할 목표</label>
+                <select id="targetId" name="targetId" required>
+                    <option value="">선택하세요</option>
+                    <option th:each="t : ${targets}" th:value="${t.id}" th:text="${t.title}"></option>
+                </select>
+            </div>
+
+            <button type="submit" class="submit-btn">등록하기</button>
+        </form>
+
+
+        <div class="info-box">
+            <h4>📘 안내</h4>
+            <ul>
+                <li>등록된 자산은 해당 목표의 진행률 계산에 자동 반영됩니다.</li>
+                <li>목표 금액을 초과하더라도 진행률은 최대 100%로 표시됩니다.</li>
+                <li>자산 등록 후 목표 트래킹 페이지에서 반영된 진행률을 확인하세요.</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<script>
+    function goToMain() {
+      window.location.href = "/main";
+    }
+</script>
+
+</body>
+</html>

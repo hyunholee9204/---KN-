@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>로그인 | KN금융</title>
+  <link rel="stylesheet" href="/css/login_style.css">
+</head>
+<body>
+<a href="/main" class="back-button">홈페이지로 돌아가기</a>
+<div class="login-container">
+  <div class="login-box">
+    <h1>KN금융</h1>
+    <h2>로그인 페이지에 오신걸 환영합니다.</h2>
+
+    <form th:action="@{/login}" method="post" autocomplete="off">
+      <!-- 🔹 자동완성 방지를 위한 가짜 입력창 -->
+      <input type="text" style="display:none">
+      <input type="password" style="display:none">
+
+      <!-- 🔹 실제 입력창 -->
+      <input type="text" name="username" placeholder="아이디"
+             class="input-field" autocomplete="nope" autocorrect="off" autocapitalize="off">
+      <input type="password" name="password" placeholder="비밀번호"
+             class="input-field" autocomplete="new-password">
+      <button type="submit" class="login-btn">로그인</button>
+    </form>
+
+    <div class="login-links">
+      <a href="/find-id">아이디 찾기</a> |
+      <a href="/find-pw">비밀번호 찾기</a> |
+      <a href="/signup">회원가입</a>
+    </div>
+    <!-- 안내 문구 추가 -->
+    <div class="login-info">
+      <p>※ 아이디는 공백없이 입력하여 주시기 바랍니다.</p>
+      <p>※ 아이디 혹은 비밀번호를 잊으셨을 경우 "아이디/비밀번호 찾기"를 누르시면 쉽게 찾을 수 있습니다.</p>
+    </div>
+
+    <div th:if="${error}" th:text="${error}" style="color:red;"></div>
+  </div>
+</div>
+</body>
+</html>

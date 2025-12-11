@@ -1,0 +1,127 @@
+/* ---------------- 기본 레이아웃 ---------------- */
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #DFF3F2;
+  margin: 0;
+  padding: 0;
+}
+
+/* 상단 바 */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(90deg, #2C3E50, #4CA1AF);
+  padding: 12px 30px;
+  color: white;
+}
+
+.header-left {
+  font-size: 24px;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.nav-menu a {
+  color: white;
+  text-decoration: none;
+  margin: 0 12px;
+  font-weight: 500;
+}
+
+/* 전체 구조 */
+.container {
+  display: flex;
+  padding: 30px;
+}
+
+/* 사이드바 */
+.sidebar {
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.sidebar button {
+  background: linear-gradient(180deg, #2E3A59, #1A2238);
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.sidebar button:hover,
+.sidebar button.active {
+  background-color: #1565C0;
+}
+
+/* 콘텐츠 */
+.content {
+  flex: 1;
+  background-color: white;
+  padding: 30px 40px;
+  margin-left: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+/* 폼 박스 */
+.form-box {
+    flex: 1;
+      background-color: white;
+      padding: 30px 40px;
+      margin-left: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.form-box h2 {
+    margin-bottom: 25px;
+    font-size: 24px;
+    color: #333;
+}
+
+/* 폼 정렬 */
+.form-grid {
+    display: grid;
+    grid-template-columns: 150px 1fr;
+    gap: 15px 20px;
+}
+
+.form-grid label {
+    font-weight: bold;
+    align-self: center;
+}
+
+.form-grid input,
+.form-grid select {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    width: 100%;
+}
+
+/* 등록 버튼 */
+.submit-btn {
+    margin-top: 30px;
+    grid-column: span 2;
+    text-align: right;
+}
+
+.submit-btn button {
+    padding: 10px 25px;
+    background-color: #0D47A1;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.submit-btn button:hover {
+    background-color: #1565C0;
+}
+
+

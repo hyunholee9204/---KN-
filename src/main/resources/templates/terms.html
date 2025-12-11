@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>이용약관 | KN금융</title>
+    <link rel="stylesheet" href="/css/terms.css">
+</head>
+<body>
+
+<!-- ✅ 헤더 -->
+<header class="header">
+    <div class="header-left">
+        <img src="/img/logo.png" alt="logo" class="logo-icon">
+        <span class="logo-text" onclick="goToMain()">KN금융</span>
+    </div>
+    <nav class="header-right">
+        <a href="/privacy">개인정보처리방침</a>
+        <a href="/main">메인으로</a>
+    </nav>
+</header>
+
+<!-- ✅ 본문 -->
+<main class="terms-container">
+    <h1>이용약관</h1>
+    <p class="update-date">최종 업데이트 : 2025년 11월 14일</p>
+
+    <section>
+        <h2>제1조 (목적)</h2>
+        <p>본 약관은 KN금융(이하 “회사”)이 제공하는 금융 관리 플랫폼(이하 “서비스”)의 이용조건 및 절차,
+            이용자와 회사 간의 권리·의무 및 기타 필요한 사항을 규정함을 목적으로 합니다.</p>
+    </section>
+
+    <section>
+        <h2>제2조 (약관의 효력 및 변경)</h2>
+        <ul>
+            <li>① 본 약관은 서비스 화면에 게시함으로써 효력이 발생합니다.</li>
+            <li>② 회사는 관련 법령을 위배하지 않는 범위에서 약관을 변경할 수 있으며,
+                변경 시 공지사항 또는 이메일을 통해 공지합니다.</li>
+            <li>③ 변경된 약관은 공지된 날로부터 효력이 발생하며, 이용자가 서비스를 계속 이용할 경우 변경된 약관에 동의한 것으로 간주됩니다.</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>제3조 (용어의 정의)</h2>
+        <ul>
+            <li>1. “이용자”란 회사의 서비스에 접속하여 본 약관에 따라 회사가 제공하는 서비스를 이용하는 자를 말합니다.</li>
+            <li>2. “회원”이란 서비스에 회원가입하여 지속적으로 서비스를 이용할 수 있는 자를 말합니다.</li>
+            <li>3. “비회원”이란 회원으로 가입하지 않고 일시적으로 서비스를 이용하는 자를 말합니다.</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>제4조 (서비스의 제공 및 변경)</h2>
+        <p>회사는 다음 각 호의 서비스를 제공합니다.</p>
+        <ul>
+            <li>① 자산 및 대출 관리 서비스</li>
+            <li>② 목표 달성 트래킹 및 금융 데이터 분석 서비스</li>
+            <li>③ 금융 관련 교육 및 정보 콘텐츠 제공</li>
+            <li>④ 기타 회사가 정하는 서비스</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>제5조 (서비스의 중단)</h2>
+        <ul>
+            <li>① 시스템 점검, 교체, 고장 등 불가피한 경우</li>
+            <li>② 천재지변, 정전 등 불가항력적 사유</li>
+            <li>③ 기타 운영상 회사가 필요하다고 판단한 경우</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>제6조 (이용자의 의무)</h2>
+        <ul>
+            <li>① 이용자는 서비스 이용 시 관계 법령, 본 약관, 회사의 공지사항을 준수해야 합니다.</li>
+            <li>② 이용자는 자신의 계정 정보를 제3자에게 제공하거나 공유할 수 없습니다.</li>
+            <li>③ 서비스 내에서 타인의 권리를 침해하거나 불법적인 행위를 해서는 안 됩니다.</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>제7조 (면책조항)</h2>
+        <ul>
+            <li>① 회사는 천재지변, 네트워크 장애 등 불가항력적인 사유로 인한 손해에 대해 책임을 지지 않습니다.</li>
+            <li>② 이용자의 귀책 사유로 발생한 문제에 대해서는 회사가 책임지지 않습니다.</li>
+            <li>③ 회사는 이용자가 제공한 정보의 신뢰도나 정확성에 대해 보증하지 않습니다.</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>제8조 (준거법 및 관할)</h2>
+        <p>본 약관은 대한민국 법령에 따라 해석되며, 서비스 이용과 관련하여 발생한 분쟁은
+            회사의 본사 소재지를 관할하는 법원을 제1심 법원으로 합니다.</p>
+    </section>
+
+    <p class="footer-text">본 이용약관은 2025년 11월 14일부터 시행됩니다.</p>
+</main>
+
+<!-- ✅ 푸터 -->
+<footer class="footer">
+    <p>© KN금융 | 경기도 용인시 강남로 40(구갈동 111) | 고객센터: kangnam:support@kangnamfinance.com</p>
+</footer>
+<script>
+    function goToMain() {
+        window.location.href = "/main";
+    }
+</script>
+</body>
+</html>

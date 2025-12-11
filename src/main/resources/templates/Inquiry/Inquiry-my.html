@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>고객센터</title>
+    <link rel="stylesheet" href="/css/in-register.css">
+</head>
+<body>
+<!-- 상단 바 -->
+<div class="header">
+    <div class="header-left" onclick="goToMain()">KN금융</div>
+    <div class="nav-wrapper">
+        <div class="nav-menu">
+            <a href="/asset">자산 관리</a>
+            <a href="/loans">대출 관리</a>
+            <a href="/target">목표 달성 트래킹</a>
+            <a href="/education/guide">교육 및 정보</a>
+            <a href="/notice">공지사항</a>
+            <a href="/inquiry">고객센터</a>
+        </div>
+    </div>
+</div>
+<!-- 페이지 본문 -->
+<div class="container">
+    <div class="sidebar">
+        <button onclick="location.href='/inquiry/faq'">FAQ</button>
+        <button onclick="location.href='/inquiry/form'">문의하기</button>
+        <button onclick="location.href='/inquiry/my'">내 문의내역</button>
+        <button onclick="location.href='/inquiry/guide'">이용 가이드</button>
+    </div>
+    <div class="content">
+        <h2>내 문의 내역</h2>
+        <table class="inquiry-table">
+            <thead>
+            <tr>
+                <th>문의유형</th>
+                <th>제목</th>
+                <th>작성일</th>
+                <th>상태</th>
+                <th>답변</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="inquiry : ${inquiries}">
+                <td th:text="${inquiry.category}">문의유형</td>
+                <td th:text="${inquiry.title}">제목</td>
+                <td th:text="${inquiry != null && inquiry.createdAt != null ? #temporals.format(inquiry.createdAt, 'yyyy-MM-dd HH:mm') : '시간없음'}">작성일</td>
+                <td th:text="${inquiry.status}">상태</td>
+                <td>
+                    <span th:if="${inquiry.answer != null}">답변 완료</span>
+                    <span th:if="${inquiry.answer == null}">대기 중</span>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<script>
+    function goToMain() {
+        window.location.href = "/main";
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>KN금융 UI 개선 안내 Popup</title>
+    <style>
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* 팝업 배경 오버레이 */
+        .popup-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9998;
+        }
+
+        /* 팝업 전체 박스 */
+        .popup-container {
+            width: 520px;
+            background: #ffffff;
+            border-radius: 18px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+            overflow: hidden;
+            position: relative;
+            z-index: 9999;
+        }
+
+        /* 닫기 버튼 */
+        .close-btn {
+            position: absolute;
+            top: 14px;
+            right: 14px;
+            background: #ffffff;
+            border: 1px solid #d7d7d7;
+            border-radius: 50%;
+            width: 34px;
+            height: 34px;
+            font-size: 17px;
+            cursor: pointer;
+            transition: background 0.2s;
+            z-index: 10;
+        }
+
+        .close-btn:hover {
+            background: #f1f1f1;
+        }
+        /* 상단 비주얼 */
+        .popup-visual {
+            height: 150px;
+            background: linear-gradient(135deg, #4A90E2, #6DD5FA);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+        }
+
+        .visual-text {
+            font-size: 22px;
+            font-weight: 700;
+            padding: 0 20px;
+        }
+
+        /* 본문 */
+        .popup-content {
+            padding: 30px 30px 10px;
+            text-align: center;
+        }
+
+        .popup-content p {
+            font-size: 16px;
+            color: #333;
+            line-height: 1.6;
+            margin: 8px 0;
+        }
+
+        /* 메인 버튼 */
+        .main-btn {
+            margin-top: 15px;
+            background-color: #2E7D32;
+            color: #ffffff;
+            border: none;
+            padding: 12px 22px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s ease-in-out;
+        }
+
+        .main-btn:hover {
+            background-color: #1B5E20;
+        }
+
+        /* 하단 옵션 버튼 */
+        .ignore-area {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            padding: 18px 0 25px;
+        }
+
+        .ignore-btn {
+            background: #f2f4f6;
+            border: 1px solid #d1d1d1;
+            padding: 8px 14px;
+            border-radius: 6px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .ignore-btn:hover {
+            background: #e3e3e3;
+        }
+    </style>
+
+</head>
+<body>
+
+<!-- ⭐ 팝업 전체 오버레이 + 내용 -->
+<div class="popup-overlay" id="popup">
+    <div class="popup-container">
+        <button class="close-btn">✕</button>
+
+        <!-- 상단 비주얼 -->
+        <div class="popup-visual">
+            <div class="visual-text">✨ KN금융 UI가 새롭게 바뀌었어요!</div>
+        </div>
+
+        <!-- 본문 -->
+        <div class="popup-content">
+            <p>더 편리하게 사용할 수 있도록 KN금융의 전체 UI와 메뉴 구성을 새롭게 정비했습니다.</p>
+            <p>자산 관리, 대출 계산, 목표 트래킹 기능을 더 쉽고 직관적으로 사용할 수 있어요.</p>
+
+            <button class="main-btn">변경 사항 확인하기</button>
+        </div>
+        <div class="ignore-area">
+            <button class="ignore-btn" onclick="ignoreFor(1)">오늘 하루 보지 않기</button>
+            <button class="ignore-btn" onclick="ignoreFor(7)">일주일 동안 보지 않기</button>
+        </div>
+    </div>
+</div>
+
+<!-- ⭐ JS 전체 통합 -->
+<script>
+    // 팝업 닫기
+    document.querySelector(".close-btn").addEventListener("click", () => {
+        window.close();
+    });
+
+    // 메인 버튼
+    document.querySelector(".main-btn").addEventListener("click", () => {
+        alert("변경 사항 페이지로 이동하도록 설정할 수 있습니다!");
+    });
+
+    function ignoreFor(days) {
+      const hideUntil = new Date();
+      hideUntil.setDate(hideUntil.getDate() + days);
+      localStorage.setItem("popupHideUntil", hideUntil.toISOString());
+      window.close();
+    }
+</script>
+
+</body>
+</html>

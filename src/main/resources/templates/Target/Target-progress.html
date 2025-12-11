@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>목표 진행 내역</title>
+    <link rel="stylesheet" href="/css/g/T-progress.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+<!-- 상단 바 -->
+<div class="header">
+    <div class="header-left" onclick="goToMain()">KN금융</div>
+    <div class="nav-wrapper">
+        <div class="nav-menu">
+            <a href="/asset">자산 관리</a>
+            <a href="/loans">대출 관리</a>
+            <a href="/target">목표 달성 트래킹</a>
+            <a href="/education/guide">교육 및 정보</a>
+            <a href="/notice">공지사항</a>
+            <a href="/inquiry">고객센터</a>
+        </div>
+    </div>
+</div>
+
+<!-- 본문 -->
+<div class="container">
+    <div class="sidebar">
+        <button onclick="location.href='/target'">목표 현황</button>
+        <button onclick="location.href='/target/progress'">진행 상황</button>
+    </div>
+
+    <div class="content">
+        <h2>목표 진행 내역</h2>
+
+        <div class="goal-list">
+            <div class="goal-card" th:each="target : ${targets}">
+                <h2 th:text="${target.title}"></h2>
+                <p>목표 금액: <span th:text="${#numbers.formatInteger(target.goalAmount, 0, 'COMMA')}"></span>원</p>
+                <p>현재 금액: <span th:text="${#numbers.formatInteger(target.totalAmount, 0, 'COMMA')}"></span>원</p>
+                <p>진행률: <span th:text="${target.progressRate}"></span>%</p>
+                <p>남은 기간: <span th:text="${target.daysLeft}"></span>일</p>
+
+                <h3>자산 등록 내역</h3>
+                <table class="history-table">
+                    <thead>
+                    <tr>
+                        <th>날짜</th>
+                        <th>금액</th>
+                        <th>유형</th>
+                        <th>메모</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="h : ${target.history}">
+                        <td th:text="${h.changeDate}"></td>
+                        <td th:text="${#numbers.formatInteger(h.changeAmount, 0, 'COMMA')}"></td>
+                        <td th:text="${h.changeType == 'deposit' ? '입금' : (h.changeType == 'withdraw' ? '출금' : h.changeType)}"></td>
+                        <td th:text="${h.memo}"></td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <!-- ✅ 그래프 캔버스 -->
+                <div class="chart-container">
+                    <canvas th:attr="id='chart-' + ${target.id}"></canvas>
+                </div>
+
+                <!-- ✅ 개별 그래프 생성 스크립트 -->
+                <script th:inline="javascript">
+                    /*<![CDATA[*/
+                    const labels[[${target.id}]] = [[${target.labels}]];
+                    const values[[${target.id}]] = [[${target.values}]];
+                    const ctx[[${target.id}]] = document.getElementById('chart-' + [[${target.id}]])
+                        .getContext('2d');
+
+                    if (labels[[${target.id}]] && values[[${target.id}]]) {
+                        new Chart(ctx[[${target.id}]], {
+                            type: 'line',
+                            data: {
+                                labels: labels[[${target.id}]],
+                                datasets: [{
+                                    label: '15일 단위 저축 추이',
+                                    data: values[[${target.id}]],
+                                    borderWidth: 2,
+                                    borderColor: '#7B1FA2',
+                                    backgroundColor: 'rgba(233, 30, 99, 0.2)',
+                                    tension: 0.3,
+                                    fill: true
+                                }]
+                            },
+                            options: {
+                                scales: {
+                                    y: {
+                                        beginAtZero: true,
+                                        title: { display: true, text: '금액 (₩)' }
+                                    },
+                                    x: {
+                                        title: { display: true, text: '기간 구간' }
+                                    }
+                                },
+                                plugins: {
+                                    legend: { display: true, position: 'bottom' }
+                                }
+                            }
+                        });
+                    }
+                    /*]]>*/
+                </script>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function goToMain() {
+        window.location.href = "/main";
+    }
+</script>
+</body>
+</html>

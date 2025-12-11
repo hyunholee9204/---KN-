@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>아이디 찾기 | KN금융</title>
+    <link rel="stylesheet" href="/css/login_style.css">
+</head>
+<body>
+<a href="/main" class="back-button">홈페이지로 돌아가기</a>
+<div class="login-container">
+    <div class="login-box">
+        <h1>KN금융</h1>
+        <h2>아이디 찾기</h2>
+
+        <form th:action="@{/find-id}" method="post" id="findIdForm">
+            <input type="text" name="name" placeholder="닉네임을 입력하세요" class="input-field" required />
+            <button type="submit" class="login-btn">아이디 찾기</button>
+        </form>
+
+        <div id="result" class="login-info" style="margin-top:15px; color:#333;"></div>
+
+        <div class="login-links">
+            <a href="/login">로그인으로 돌아가기</a> |
+            <a href="/find-pw">비밀번호 찾기</a>
+        </div>
+        <div class="login-info">
+            <p>※ 회원가입 시 입력한 닉네임을 정확히 입력해주세요.</p>
+            <p>※ 보안을 위해 아이디의 일부는 * 표시로 가려집니다.</p>
+        </div>
+    </div>
+</div>
+
+<script>
+    const form = document.getElementById("findIdForm");
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const formData = new FormData(form);
+      const response = await fetch("/find-id", {
+        method: "POST",
+        body: formData
+      });
+      const text = await response.text();
+      document.getElementById("result").innerText =
+        text.includes("****") ? `회원님의 아이디: ${text}` : text;
+    });
+</script>
+</body>
+</html>

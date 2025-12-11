@@ -1,0 +1,193 @@
+/* ---------------- 기본 레이아웃 ---------------- */
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #DFF3F2;
+  margin: 0;
+  padding: 0;
+}
+
+/* 상단 바 */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(90deg, #2C3E50, #4CA1AF);
+  padding: 12px 30px;
+  color: white;
+}
+
+.header-left {
+  font-size: 24px;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.nav-menu a {
+  color: white;
+  text-decoration: none;
+  margin: 0 12px;
+  font-weight: 500;
+}
+
+/* 전체 구조 */
+.container {
+  display: flex;
+  padding: 30px;
+}
+
+/* 사이드바 */
+.sidebar {
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.sidebar button {
+  background: linear-gradient(180deg, #2E3A59, #1A2238);
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.sidebar button:hover,
+.sidebar button.active {
+  background-color: #1565C0;
+}
+
+/* 콘텐츠 */
+.content {
+  flex: 1;
+  background-color: white;
+  padding: 30px 40px;
+  margin-left: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.content h2 {
+    font-size: 24px;
+    margin-bottom: 30px;
+    border-bottom: 2px solid #0D47A1;
+    padding-bottom: 10px;
+    color: #222;
+}
+
+.education-detail-container {
+    max-width: 900px;
+    margin: auto;
+    background-color: #fff;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.education-detail-container h1 {
+    font-size: 28px;
+    color: #0D47A1;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+.education-detail-summary {
+    font-size: 18px;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+.education-detail-highlight {
+    background-color: #E3F2FD;
+    color: #0D47A1;
+    padding: 15px 20px;
+    border-radius: 8px;
+    font-weight: bold;
+    font-size: 17px;
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+.education-detail-content {
+    font-size: 16px;
+    color: #333;
+    line-height: 1.7;
+    margin-bottom: 30px;
+}
+
+.education-detail-content table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    background-color: #fafafa;
+}
+
+.education-detail-content th,
+.education-detail-content td {
+    border: 1px solid #ddd;
+    padding: 12px 16px;
+    text-align: center;
+    font-size: 16px;
+}
+
+.education-detail-content th {
+    background-color: #f1f1f1;
+    font-weight: bold;
+    color: #0D47A1;
+}
+
+.education-detail-emphasis {
+    margin-top: 30px;
+    font-size: 17px;
+    font-weight: 500;
+    color: #333;
+}
+
+.education-detail-link-wrapper {
+    margin-top: 20px;
+}
+
+.education-detail-link {
+    display: inline-block;
+    padding: 10px 24px;
+    background: linear-gradient(90deg, #eecda3, #ef629f);
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.education-detail-link:hover {
+    background-color: #0D47A1;
+}
+
+.education-detail-content ol {
+    padding-left: 20px;
+    margin: 15px 0;
+}
+
+.education-detail-content li {
+    margin-bottom: 10px;
+    line-height: 1.6;
+}
+
+.education-detail-content table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+
+.education-detail-content th,
+.education-detail-content td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: center;
+}
+
+.education-detail-content th {
+    background-color: #f1f1f1;
+    color: #0D47A1;
+}
+
+
+

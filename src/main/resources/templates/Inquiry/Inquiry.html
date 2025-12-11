@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>고객센터</title>
+    <link rel="stylesheet" href="/css/notice.css">
+</head>
+<body>
+<!-- 상단 바 -->
+<div class="header">
+    <div class="header-left" onclick="goToMain()">KN금융</div>
+    <div class="nav-wrapper">
+        <div class="nav-menu">
+            <a href="/asset">자산 관리</a>
+            <a href="/loans">대출 관리</a>
+            <a href="/target">목표 달성 트래킹</a>
+            <a href="/education/guide">교육 및 정보</a>
+            <a href="/notice">공지사항</a>
+            <a href="/inquiry">고객센터</a>
+        </div>
+    </div>
+</div>
+<!-- 페이지 본문 -->
+<div class="container">
+    <div class="sidebar">
+        <button onclick="location.href='/inquiry/faq'">FAQ</button>
+        <button onclick="location.href='/inquiry/form'">문의하기</button>
+        <button onclick="location.href='/inquiry/my'">내 문의내역</button>
+        <button onclick="location.href='/inquiry/guide'">이용 가이드</button>
+    </div>
+    <div class="content">
+        <h2>고객센터 페이지입니다.</h2>
+        <br>
+        <p>왼쪽 세부 기능을 클릭하세요.</p>
+    </div>
+</div>
+<script>
+    function goToMain() {
+        window.location.href = "/main";
+    }
+</script>
+</body>
+</html>

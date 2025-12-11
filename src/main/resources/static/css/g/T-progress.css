@@ -1,0 +1,132 @@
+/* ---------------- 기본 레이아웃 ---------------- */
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #DFF3F2;
+  margin: 0;
+  padding: 0;
+}
+
+/* 상단 바 */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(90deg, #2C3E50, #4CA1AF);
+  padding: 12px 30px;
+  color: white;
+}
+
+.header-left {
+  font-size: 24px;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.nav-menu a {
+  color: white;
+  text-decoration: none;
+  margin: 0 12px;
+  font-weight: 500;
+}
+
+/* 전체 구조 */
+.container {
+  display: flex;
+  padding: 30px;
+}
+
+/* 사이드바 */
+.sidebar {
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.sidebar button {
+  background: linear-gradient(180deg, #2E3A59, #1A2238);
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.sidebar button:hover,
+.sidebar button.active {
+  background-color: #1565C0;
+}
+.content {
+    flex: 1;
+    background: white;
+    padding: 30px 40px;
+    margin-left: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.content h2 {
+    margin-bottom: 20px;
+    color: black;
+}
+
+.goal-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 35px;
+}
+
+.goal-card {
+    width: 480px;
+    background: #f9fbff;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    padding: 25px;
+    text-align: center;
+}
+
+.goal-card h2 {
+    color: black;
+    margin-bottom: 8px;
+}
+
+.goal-card p {
+    margin: 5px 0;
+    font-size: 15px;
+}
+
+.history-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+    font-size: 14px;
+}
+
+.history-table th, .history-table td {
+    border-bottom: 1px solid #ddd;
+    padding: 6px;
+}
+
+.history-table th {
+    background-color: #f2f4f8;
+}
+
+.chart-container {
+     margin-top: 20px;
+}
+
+.back-btn {
+     display: inline-block;
+     margin-bottom: 20px;
+     padding: 8px 16px;
+     background-color: #1565C0;
+     color: white;
+     border: none;
+     border-radius: 6px;
+     cursor: pointer;
+     font-weight: bold;
+}
+
+
+.back-btn:hover {
+    background-color: #0D47A1;
+}

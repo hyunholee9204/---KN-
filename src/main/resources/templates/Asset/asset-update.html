@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>자산 수정</title>
+    <link rel="stylesheet" href="/css/a/a-update.css"> <!-- 수정용 CSS -->
+</head>
+<body>
+
+<div class="header">
+    <div class="header-left" onclick="goToMain()">
+        KN금융</div>
+    <div class="nav-wrapper">
+        <div class="nav-menu">
+            <a href="/asset">자산 관리</a>
+            <a href="/loans">대출 관리</a>
+            <a href="/target">목표 달성 트래킹</a>
+            <a href="/education/guide">교육 및 정보</a>
+            <a href="/notice">공지사항</a>
+            <a href="/inquiry">고객센터</a>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="sidebar">
+        <button onclick="location.href='/asset/status'">자산 현황</button>
+        <button onclick="location.href='/asset/transaction/all'">자산 내역 조회</button>
+        <button onclick="location.href='/asset/history'">월별 변동 내역</button>
+        <button onclick="location.href='/asset/goal'">목표 달성용 자산 등록</button>
+    </div>
+
+    <div class="content">
+        <h2>자산 수정</h2>
+
+        <div class="asset-box">
+            <form th:action="@{'/asset/update/' + ${asset.id}}" method="post">
+                <label for="type">자산 종류</label><br>
+                <select id="type" name="type" required class="custom-select">
+                    <option value="현금" th:selected="${asset.type == '현금'}">현금</option>
+                    <option value="예금" th:selected="${asset.type == '예금'}">예금</option>
+                    <option value="주식" th:selected="${asset.type == '주식'}">주식</option>
+                    <option value="부동산" th:selected="${asset.type == '부동산'}">부동산</option>
+                    <option value="가상자산" th:selected="${asset.type == '가상자산'}">가상자산</option>
+                    <option value="기타" th:selected="${asset.type == '기타'}">기타</option>
+                </select><br><br>
+
+                <label for="amount">금액</label><br>
+                <input type="number" id="amount" name="amount" th:value="${asset.amount}" required><br><br>
+
+                <button type="submit" class="edit-btn">수정 완료</button>
+                <a href="/asset/status">
+                    <button type="button" class="delete-btn">취소</button>
+                </a>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    function goToMain() {
+        window.location.href = "/main";
+    }
+</script>
+
+</body>
+</html>

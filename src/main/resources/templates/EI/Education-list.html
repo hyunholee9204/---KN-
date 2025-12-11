@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>교육 콘텐츠 목록</title>
+    <link rel="stylesheet" href="/css/e/education.css">
+</head>
+<body>
+<!-- 상단 헤더 -->
+<div class="header">
+    <div class="header-left" onclick="goToMain()">KN금융</div>
+    <div class="nav-wrapper">
+        <div class="nav-menu">
+            <a href="/asset">자산 관리</a>
+            <a href="/loans">대출 관리</a>
+            <a href="/target">목표 달성 트래킹</a>
+            <a href="/education/guide">교육 및 정보</a>
+            <a href="/notice">공지사항</a>
+            <a href="/inquiry">고객센터</a>
+        </div>
+    </div>
+</div>
+
+<!-- 메인 컨테이너 -->
+<div class="container">
+    <!-- 사이드바 -->
+    <div class="sidebar">
+        <button onclick="location.href='/education/guide'">교육</button>
+        <button onclick="location.href='/finance/info'">금융 정보</button>
+    </div>
+    <div class="education-list">
+        <div th:each="edu : ${educationList}" class="education-card">
+            <!-- 왼쪽 영역 -->
+            <div class="edu-info">
+                <h3 th:classappend="${edu.iconType}">
+                    <a th:href="@{/education/{id}(id=${edu.id})}" th:text="${edu.title}">제목</a>
+                </h3>
+                <p th:text="${edu.summary}">요약 설명</p>
+
+                <p class="recommend" th:text="${edu.recommendation}"></p>
+            </div>
+
+            <!-- 오른쪽 버튼 -->
+            <div class="edu-actions">
+                <a th:if="${edu.link != null}" th:href="${edu.link}" target="_blank">
+                    관련 강의 보기
+                </a>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+<script>
+    function goToMain() {
+        window.location.href = "/main";
+    }
+</script>
+</body>
+</html>
+

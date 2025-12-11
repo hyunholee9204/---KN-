@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>목표 수정</title>
+    <link rel="stylesheet" href="/css/g/T-register.css"> <!-- 등록과 동일한 CSS 사용 -->
+</head>
+<body>
+<!-- 상단 바 -->
+<div class="header">
+    <div class="header-left" onclick="goToMain()">KN금융</div>
+    <div class="nav-wrapper">
+        <div class="nav-menu">
+            <a href="/asset">자산 관리</a>
+            <a href="/loans">대출 관리</a>
+            <a href="/target">목표 달성 트래킹</a>
+            <a href="/education/guide">교육 및 정보</a>
+            <a href="/notice">공지사항</a>
+            <a href="/inquiry">고객센터</a>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <!-- 사이드바 -->
+    <div class="sidebar">
+        <button onclick="location.href='/target'">목표 현황</button>
+        <button onclick="location.href='/target/register'">목표 등록</button>
+        <button onclick="location.href='/target/progress'">진행 내역</button>
+    </div>
+
+    <!-- 메인 콘텐츠 -->
+    <div class="content">
+        <h2>목표 수정</h2>
+
+        <form th:action="@{'/target/edit/' + ${target.id}}" th:object="${target}" method="post">
+            <div class="form-group">
+                <label for="title">목표 이름</label>
+                <input type="text" id="title" th:field="*{title}" required>
+            </div>
+
+            <div class="form-group">
+                <label for="description">세부 내용</label>
+                <textarea id="description" th:field="*{description}" rows="3"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="goalAmount">목표 금액 (₩)</label>
+                <input type="number" id="goalAmount" th:field="*{goalAmount}" required>
+            </div>
+
+            <div class="form-group">
+                <label for="startDate">시작일</label>
+                <input type="date" id="startDate" th:field="*{startDate}" required>
+            </div>
+
+            <div class="form-group">
+                <label for="endDate">마감일</label>
+                <input type="date" id="endDate" th:field="*{endDate}" required>
+            </div>
+
+            <div class="actions">
+                <button type="submit" class="submit-btn">수정하기</button>
+                <a href="/target" class="cancel-btn">취소</button></a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    function goToMain() {
+        window.location.href = "/main";
+    }
+</script>
+</body>
+</html>

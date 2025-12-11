@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>공지사항 상세 | KN금융</title>
+    <link rel="stylesheet" href="/css/notice-d.css">
+</head>
+<body>
+
+<div class="wrapper">
+
+    <!-- 🔹 헤더 영역 -->
+    <div class="header-container">
+        <div class="header-left" onclick="goToMain()">
+            <img src="/img/logo.png" alt="로고" class="logo-icon">
+            KN금융
+        </div>
+    </div>
+
+    <!-- 🔹 메뉴바 -->
+    <nav class="menu-bar">
+        <button onclick="location.href='/asset'">자산 관리</button>
+        <button onclick="location.href='/loans'">대출 관리</button>
+        <button onclick="location.href='/target'">목표 달성 트래킹</button>
+        <button onclick="location.href='/education/guide'">교육 및 정보</button>
+        <button onclick="location.href='/notice'">공지사항</button>
+        <button onclick="location.href='/inquiry'">고객센터</button>
+    </nav>
+
+    <!-- 🔹 공지 상세 콘텐츠 -->
+    <main class="notice-detail-container">
+        <div class="notice-detail-card">
+            <h2 th:text="${notice.title}">공지 제목</h2>
+
+            <div class="notice-info">
+                <p><strong>작성자:</strong> <span th:text="${notice.author}">관리자</span></p>
+                <p><strong>작성일:</strong>
+                    <span th:if="${notice.createdAt}" th:text="${#temporals.format(notice.createdAt, 'yyyy-MM-dd HH:mm')}">날짜</span>
+                    <span th:unless="${notice.createdAt}">날짜 없음</span>
+                </p>
+                <p><strong>조회수:</strong> <span th:text="${notice.views}">0</span></p>
+            </div>
+
+            <hr>
+
+            <div class="notice-content" th:text="${notice.content}">
+                공지 내용입니다.
+            </div>
+
+            <div class="back-btn-wrapper">
+                <a href="/notice" class="back-btn">← 목록으로</a>
+            </div>
+        </div>
+    </main>
+
+    <!-- 🔹 푸터 -->
+    <footer>
+        © 2025 KN금융 | 고객센터: 1234-5678 | Email: help@knfinance.co.kr
+    </footer>
+</div>
+
+<script>
+    function goToMain() {
+        window.location.href = "/main";
+    }
+</script>
+</body>
+</html>
