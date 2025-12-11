@@ -107,3 +107,75 @@
 
 아래는 프로젝트에서 사용한 주요 테이블 목록입니다.
 
+asset - 자산 정보
+asset_history - 자산 변동 내역
+education_list - 교육/강의 콘텐츠
+faq - 자주 묻는 질문
+finance_history - 금융 지표 및 추세 분석
+inquiry - 고객 문의
+loans - 대출 정보
+login_list - 사용자 계정 정보
+notice - 공지사항
+repayment - 대출 상환 내역
+target - 목표 설정
+target_history - 목표 기록
+transaction - 거래 내역
+updates - 업데이트 내역
+update_detail - 업데이트 세부 내용
+
+
+---
+
+# 🖼 주요 화면 캡처 (Screenshots)
+
+> ⚠ 이미지는 예시 경로입니다. GitHub에 이미지 업로드 후 경로만 바꿔주세요.  
+> 예: `![메인페이지](https://github.com/hyunholee9204/---KN-/assets/12345/main.png)`
+
+### 🌐 메인 페이지  
+![Main](이미지경로)
+
+### 💰 자산 현황  
+![Asset](이미지경로)
+
+### 🏦 대출 관리  
+![Loans](이미지경로)
+
+### 📉 이자율 계산기  
+![LoanCalc](이미지경로)
+
+### 🎯 목표 트래킹  
+![Goal](이미지경로)
+
+### 📚 교육 콘텐츠  
+![Education](이미지경로)
+
+### 💱 금융 정보 (환율 그래프)  
+![Finance](이미지경로)
+
+### 📢 공지사항  
+![Notice](이미지경로)
+
+---
+
+# 📅 개발 정보 (Development Info)
+
+- **개발 기간:** 2025.03 ~ 2025.11  
+- **개발자:** 1인 개발  
+- **프로젝트 유형:** 대학 캡스톤 디자인  
+- **개발 방식:** Spring Boot 기반 MVC 아키텍처  
+
+---
+
+# ▶ 실행 방법 (How to Run)
+
+```bash
+# 1. Repository Clone
+git clone https://github.com/사용자명/---KN-.git
+cd 프로젝트폴더
+
+# 2. Run Project (Windows)
+gradlew.bat bootRun
+
+# 3. Run Project (Mac/Linux)
+./gradlew bootRun
+
